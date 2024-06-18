@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  clases: false
+  ayudantias: false
+  interrogaciones: false
+
+two:
+  clases: false
+  ayudantias: false
+  interrogaciones: false

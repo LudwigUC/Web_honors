@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Planner de Estudio</title>
+  <meta charset="utf-8">
+  <meta name="viewport" conten="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+</head>
+<body>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">¡Comienza a planificar tu interrogación!</h1>
+
+      <% if @contenido && @contenido.errors.any? %>
+        <div class="notification is-danger">
+          <button class="delete"></button>
+          <strong>Error al crear el planner:</strong>
+          <ul>
+            <% @contenido.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= form_with model: @contenido, url: contenidos_path, method: :post, class: "box" do |f| %>
+
+        <div class="field">
+          <label class="label">Nombre del ramo</label>
+          <div class="control">
+            <%= f.text_field :Nombre, class: "input" %>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Fecha de la interrogación</label>
+          <div class="control">
+            <%= f.date_field :Fecha, class: "input" %>
+          </div>
+        </div>
+
+        <div class="botones" style="display: flex; justify-content: space-between;">
+          <div class="crear_form" style="float: right;">
+            <%= f.submit "Agregar Contenidos", class: "button is-primary" %>
+          </div>
+        </div>
+
+      <% end %>
+
+  <footer>
+    <p>&copy; 2024 Planner IngUC. Todos los derechos reservados.</p>
+    <p><a href="<%= "https://www.linkedin.com/in/sotomuena/" %>">Contáctanos</a> para más información.</p>
+  </footer>
+
+</body>
+</html>
