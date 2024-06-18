@@ -5,50 +5,69 @@
   <meta charset="utf-8">
   <meta name="viewport" conten="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+
+    <style>
+      .fixed-width {
+        width: 200px; /* Ajusta este valor según tus necesidades */
+        justify-content: center; /* Centra horizontalmente */
+        align-items: center;
+      }
+      .contenido {
+        width: 200px;
+      }
+      .eliminar {
+        width: 50px;
+      }
+      .checkbox-large {
+        display: block;
+        margin: 0 auto;
+        /* Ajusta el tamaño del checkbox si es necesario */
+        width: 24px; /* Ajusta este valor según tus necesidades */
+        height: 24px; /* Ajusta este valor según tus necesidades */
+        cursor: pointer; /* Cambia el cursor a una mano para indicar que es clickeable */
+      }
+    </style>
 </head>
 <body>
   <section class="section">
     <div class="container">
       <h1 class="title">Planner de <%= @ramo.Nombre %></h1>
 
-      <% if @contenido && @contenido.errors.any? %>
-        <div class="notification is-danger">
-          <button class="delete"></button>
-          <strong>Error al insertar el contenido:</strong>
-          <ul>
-            <% @contenido.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
+      <div class="box">
+
+        <table class="table is-bordered is-fullwidth">
+
+          <thead>
+            <tr>
+              <th class="is-primary">Contenido</th>
+              <td class="is-primary">Descripción</td>
+              <td class="is-primary">Clases</td>
+              <td class="is-primary">Ayudantías</td>
+              <td class="is-primary">interrogaciones</td>
+              <td class="is-primary">Eliminar</td>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @contenidos.each do |contenido| %>
+              <tr>
+                <td class="contenido"><%= contenido.nombre %></td>
+                <td><%= contenido.descripcion %></td>
+                <td class="fixed-width"><%= check_box_tag "clases_#{contenido.id}", "1", contenido.clases, class: "checkbox-large" %></td>
+                <td class="fixed-width"><%= check_box_tag "clases_#{contenido.id}", "1", contenido.ayudantias, class: "checkbox-large" %></td>
+                <td class="fixed-width"><%= check_box_tag "clases_#{contenido.id}", "1", contenido.interrogaciones, class: "checkbox-large" %></td>
+                <td class="eliminar"> <%= link_to "X", contenido_path(contenido), method: :delete, class: "button is-danger", data: { turbo_method: :delete } %></td>
+              </tr>
             <% end %>
-          </ul>
-        </div>
-      <% end %>
-
-      <%= form_with model: @contenido, url: "/add_content", class: "box" do |f| %>
-
-        <div class="field">
-          <label class="label">Nombre del contenido</label>
-          <div class="control">
-            <%= f.text_field :nombre, name: "contenido[nombre]", class: "input" %>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="label">Descripción</label>
-          <div class="control">
-            <%= f.text_area :descripcion, name: "contenido[descripcion]", class: "textarea", rows: 4 %>
-          </div>
-        </div>
-
+    
+          </tbody>
+        </table>
+        
         <div class="botones" style="display: flex; justify-content: space-between;">
-          <div class="agregar" style="float: left;">
-            <%= link_to "Agregar Contenido", "/add_content", class: "button is-info", data: { turbo_method: :post } %>
-          </div>
-          <div class="crear_form" style="float: right;">
-            <%= link_to "Crear Planner", "/crear_planner", class: "button is-primary", data: { turbo_method: :post } %>
+          <div class="crear_form" style="float: left;">
+            <%= link_to "Agregar Contenidos", "/add_content", class: "button is-primary" %>
           </div>
         </div>
-
-      <% end %>
 
   <footer>
     <p>&copy; 2024 Planner IngUC. Todos los derechos reservados.</p>

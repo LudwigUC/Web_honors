@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   post "ramos/create", to: "ramos#create"
   get '/add_content', to: 'contenidos#add_content'
   post '/add_content', to: 'contenidos#create'
+  patch '/add_content', to: 'contenidos#create'
+  delete '/add_content', to: 'contenidos#delete'
   post '/crear_planner', to: 'contenidos#terminar'
+  patch '/crear_planner', to: 'contenidos#terminar'
   get '/show_planner', to: 'index#planner'
 end
