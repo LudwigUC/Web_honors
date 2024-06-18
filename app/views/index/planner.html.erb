@@ -9,7 +9,7 @@
 <body>
   <section class="section">
     <div class="container">
-      <h1 class="title">Agrega tus Contenidos</h1>
+      <h1 class="title">Planner de <%= @ramo.Nombre %></h1>
 
       <% if @contenido && @contenido.errors.any? %>
         <div class="notification is-danger">
@@ -23,28 +23,28 @@
         </div>
       <% end %>
 
-      <%= form_with model: @contenido, url: contenidos_path, method: :post, class: "box" do |f| %>
+      <%= form_with model: @contenido, url: "/add_content", class: "box" do |f| %>
 
         <div class="field">
           <label class="label">Nombre del contenido</label>
           <div class="control">
-            <%= f.text_field :title, class: "input" %>
+            <%= f.text_field :nombre, name: "contenido[nombre]", class: "input" %>
           </div>
         </div>
 
         <div class="field">
           <label class="label">Descripción</label>
           <div class="control">
-            <%= f.text_area :description, class: "textarea", rows: 4 %>
+            <%= f.text_area :descripcion, name: "contenido[descripcion]", class: "textarea", rows: 4 %>
           </div>
         </div>
 
         <div class="botones" style="display: flex; justify-content: space-between;">
           <div class="agregar" style="float: left;">
-            <%= f.submit "Agregar Contenido", class: "button is-info" %>
+            <%= link_to "Agregar Contenido", "/add_content", class: "button is-info", data: { turbo_method: :post } %>
           </div>
           <div class="crear_form" style="float: right;">
-            <%= f.submit "Crear Planner", class: "button is-primary" %>
+            <%= link_to "Crear Planner", "/crear_planner", class: "button is-primary", data: { turbo_method: :post } %>
           </div>
         </div>
 

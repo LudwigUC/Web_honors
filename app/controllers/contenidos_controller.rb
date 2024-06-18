@@ -1,6 +1,6 @@
 class ContenidosController < ApplicationController
   def add_content
-    @contenido = Contenido.all
+    @contenido = Contenido.last
   end
 
   def show
@@ -14,15 +14,30 @@ class ContenidosController < ApplicationController
   end
 
   def create
-    # Crea una actividad y redirige a la página inicial
-    @contenido = Contenido.new(conten_params)
-    puts "here"
-
-    if @contenido.save
-      redirect_to "/add_content", notice: "Creado con exito"
+    if conten_params
+      @contenido = Contenido.new(conten_params)
+        if @contenido.save
+          redirect_to "/add_content", notice: "Creado con exito"
+      else
+        puts "Errores de validación: #{@contenido.errors.full_messages.join(', ')}"
+        redirect_to "/add_content", notice: "Creado sin exito"
+      end
     else
-      puts "Errores de validación: #{@contenido.errors.full_messages.join(', ')}"
-      redirect_to root_path, notice: "Creado sin exito"
+      redirect_to "/add_content", notice: "No se pueden dejar en blanco"
+    end
+  end
+
+  def terminar
+    if conten_params.present?
+      @contenido = Contenido.new(conten_params)
+        if @contenido.save
+          redirect_to "/show_planner", notice: "Creado con exito"
+      else
+        puts "Errores de validación: #{@contenido.errors.full_messages.join(', ')}"
+        redirect_to "/add_content", notice: "Creado sin exito"
+      end
+    else
+      redirect_to "/show_planner", notice: "No se pueden dejar en blanco"
     end
   end
 

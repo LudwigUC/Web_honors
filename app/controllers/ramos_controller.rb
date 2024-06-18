@@ -1,24 +1,25 @@
 class RamosController < ApplicationController
   def home
-    @ramo = Contenido.all
+    @ramo = Ramo.first
   end
 
   def show
   end
 
   def new
-    @ramo = Contenido.new
+    @ramo = Ramo.new
   end
 
   def edit
   end
 
   def create
+    Rails.logger.debug params.inspect
     # Crea una actividad y redirige a la página inicial
-    @ramo = Contenido.new(conten_params)
+    @ramo = Ramo.new(ramo_params)
 
     if @ramo.save
-      redirect_to root_path, notice: "Creado con exito"
+      redirect_to "/add_content", notice: "Creado con exito"
     else
       puts "Errores de validación: #{@ramo.errors.full_messages.join(', ')}"
       redirect_to root_path, notice: "Creado sin exito"
@@ -27,7 +28,7 @@ class RamosController < ApplicationController
 
     private
 
-    def conten_params
+    def ramo_params
       params.require(:ramo).permit(:Nombre, :Fecha )
     end
 end

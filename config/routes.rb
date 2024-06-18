@@ -12,5 +12,8 @@ Rails.application.routes.draw do
   root "ramos#home"
 
   post "ramos/create", to: "ramos#create"
-  post '/add_content', to: 'contenidos#add_content'
+  get '/add_content', to: 'contenidos#add_content'
+  post '/add_content', to: 'contenidos#create'
+  post '/crear_planner', to: 'contenidos#terminar'
+  get '/show_planner', to: 'index#planner'
 end

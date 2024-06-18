@@ -1,4 +1,6 @@
 class IndexController < ApplicationController
-  def home
+  def planner
+    @ramo = Ramo.last
+    @contenidos = Contenido.all
   end
 end
