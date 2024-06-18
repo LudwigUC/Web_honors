@@ -1,6 +1,5 @@
 class RamosController < ApplicationController
   def home
-    @ramo = Ramo.first
   end
 
   def show

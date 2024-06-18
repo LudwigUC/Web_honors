@@ -11,7 +11,7 @@
     <div class="container">
       <h1 class="title">Agrega tus Contenidos</h1>
 
-      <%= form_with model: @contenido, class: "box", id: "contenidoForm" do |f| %>
+      <%= form_with model: @contenido, url: "/crear_planner", class: "box", id: "contenidoForm" do |f| %>
 
         <div class="field">
           <label class="label">Nombre del contenido</label>
@@ -29,36 +29,12 @@
 
         <div class="botones" style="display: flex; justify-content: space-between;">
           <div class="agregar" style="float: left;">
-            <%= f.submit "Agregar Contenido", class: "button is-info", id: "agregarContenido"%>
-            <!-- <%= link_to "Agregar Contenido", "/add_content", class: "button is-info", data: { turbo_method: :post } %> -->
+            <%= f.submit "Agregar Contenido", class: "button is-info", id: "agregarContenido" %>
           </div>
-          <div class="crear_form" style="float: right;">
-            <%= f.submit "Crear Planner", class: "button is-primary", id: "crearPlanner" %>
-          </div>
+          <div class="block"></div>
         </div>
 
       <% end %>
-
-      <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("agregarContenido").addEventListener("click", function(event) {
-      event.preventDefault(); // Evita el envío automático del formulario
-      var form = document.getElementById("contenidoForm");
-      form.action = "/add_content";
-      form.method = "POST"; // Asegúrate de que el formulario se envíe como POST
-      form.submit();
-    });
-
-    // Script para manejar el clic en "Crear Planner"
-    document.getElementById("crearPlanner").addEventListener("click", function(event) {
-      event.preventDefault(); // Evita el envío automático del formulario
-      var form = document.getElementById("contenidoForm");
-      form.action = "/crear_planner"; // Configura la acción del formulario para enviar a "/crear_planner"
-      form.method = "POST"; // Configura el método del formulario como POST
-      form.submit(); // Envía el formulario
-    });
-  });
-</script>
 
   <footer>
     <p>&copy; 2024 Planner IngUC. Todos los derechos reservados.</p>
