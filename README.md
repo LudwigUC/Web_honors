@@ -1,24 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Está entrega de Web-Honors decidí hacerla en Ruby on Rails en "honor(s)" (guiño guiño) al grandioso curso de ingeniería de software que acabo de (Sufrir) dar.
 
-Things you may want to cover:
+Esta página consiste en un planificador de estudio, que crea una plantilla del modo en que yo me organizo para preparar una Interrogación de los ramos teóricos.
 
-* Ruby version
+Les dejo el link del video de youtube aquí:
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+https://youtu.be/XOI3dsUfH6I
